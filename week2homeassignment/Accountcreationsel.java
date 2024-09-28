@@ -12,30 +12,41 @@ public class Accountcreationsel {
 		EdgeDriver driver= new EdgeDriver();
 		driver.manage().window().maximize();
 		driver.get("http://leaftaps.com/opentaps/control/main");
+		//login
 		driver.findElement(By.id("username")).sendKeys("DemoSalesManager");
 		driver.findElement(By.id("password")).sendKeys("crmsfa");
 		WebElement login= driver.findElement(By.className("decorativeSubmit"));
 		login.click();
-		
+		//account
 		driver.findElement(By.partialLinkText("M/SFA")).click();
 		driver.findElement(By.partialLinkText("Accounts")).click();
-		
+		//create Account
 		driver.findElement(By.partialLinkText("Create Account")).click();
 		
-		driver.findElement(By.id("accountName")).sendKeys("newacc222");
+		driver.findElement(By.id("accountName")).sendKeys("newaccou222");
 		driver.findElement(By.name("description")).sendKeys("Selenium Automation Tester");
-	
-		
-		WebElement ownershipWE = driver.findElement(By.className("createAccountForm_ownershipEnumId"));
-		Select industryDD =new Select(ownershipWE);
-		industryDD.selectByVisibleText("S-Corporation");
-		
-		WebElement button = driver.findElement(By.className("smallSubmit"));
-		button.click();
-		Thread.sleep(6000);
-		driver.close();
-       
+		Select select =new Select(driver.findElement(By.name("industryEnumId")));
+		select.selectByVisibleText("Computer Software");
+		//ownership
+		Select select1 =new Select(driver.findElement(By.name("ownershipEnumId")));
+		select1.selectByVisibleText("S-Corporation");
+		//source
+		Select select2 =new Select(driver.findElement(By.name("dataSourceId")));
+		select2.selectByVisibleText("Employee");
+		//marketing
+		Select select3 =new Select(driver.findElement(By.name("marketingCampaignId")));
+		select3.selectByValue("9000");
+		//state
+		Select select4 =new Select(driver.findElement(By.name("generalStateProvinceGeoId")));
+		select4.selectByValue("TX");
 
+		//Create Button
+		driver.findElement(By.className("smallSubmit")).click();
+		
+		driver.close();
+
+	}		
+		
 	}
 
-}
+
